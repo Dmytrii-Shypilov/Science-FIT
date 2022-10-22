@@ -1,0 +1,124 @@
+.listBlock {
+    width: 550px;
+    height: 350px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 10px;
+   
+}
+
+.list {
+    height: 100%;
+    list-style: none;
+    overflow-y: auto;
+   
+   
+}
+
+.listItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+
+}
+
+.training {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 700;
+    &:hover {
+        color: grey;
+        cursor: pointer;
+    }
+
+}
+
+.panel {
+    display: flex;
+    align-items: center;
+}
+
+.btnWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.time {
+    margin-right: 10px;
+}
+
+.addBtn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+    &:hover {
+        background-color: grey;
+    }
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+.deleteBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    padding: 0 7px;
+    margin-left: 5px;
+    cursor: pointer;
+    border: transparent;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+    &:hover {
+      background-color: grey;
+    }
+  }
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 10px;
+    cursor: pointer;
+    border: transparent;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+    &:hover {
+      background-color: grey;
+    }
+}
+
+.message {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    font-weight: 600;
+    text-align: center;
+    &:not(:last-of-type) {
+        margin-bottom: 10px;
+    }
+}
+
+.link {
+    color: red;
+}

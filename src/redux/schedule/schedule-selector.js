@@ -1,0 +1,1 @@
+export const getSchedule = store => store.schedule

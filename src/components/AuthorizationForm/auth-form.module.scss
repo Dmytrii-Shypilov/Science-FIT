@@ -1,0 +1,100 @@
+.form {display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 501px;
+    height: 527px;
+    box-shadow: 0px 4px 15px rgba(2, 23, 42, 0.1);
+   padding: 70px 32px;
+    border: 1px solid grey;
+    border-radius: 5px;
+
+}
+
+
+.text {
+    font-family: var(--mainFont);
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    color: var(--black);
+}
+
+.inputBlock {
+    margin-top: 32px;
+    margin-bottom: 40px;
+}
+
+.input {
+    width: 425px;
+    height: 56px;
+    padding: 20px 25px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.inputWrapper {
+    margin-bottom: 24px;
+}
+
+input:hover {
+    border-color: var(--accentColor);
+}
+
+.btn {
+    width: 204px;
+    height: 60px;
+    font-family: var(--mainFont);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    border: transparent;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn:not(:last-of-type) {
+    margin-right: 17px;
+}
+
+.btn:hover {
+    background: grey;
+}
+
+.message {
+    font-family: var(--mainFont);
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.04em;
+    color: red;
+    margin-top: 4px;
+  }
+
+
+@media screen and (max-width: 767px) {
+    .form {
+        width: 280px;
+        padding: 40px 20px;
+    }
+
+    .text {
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    .input {
+        width: 240px;
+    }
+
+    .btn {
+        width: 109px;
+    }
+
+    .link {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

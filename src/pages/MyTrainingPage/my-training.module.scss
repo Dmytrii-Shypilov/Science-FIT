@@ -1,0 +1,46 @@
+.section {
+ width: 100%;
+ padding: 40px 0px;
+}
+
+.container {
+width: 1200px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.trainingNavBar {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  
+  height: 30px;
+  border-radius: 5px;
+}
+
+.link {
+  text-decoration: none;
+  color: #545454;
+  font-weight: 700;
+}
+
