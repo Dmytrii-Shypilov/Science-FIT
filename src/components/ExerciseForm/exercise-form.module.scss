@@ -43,14 +43,14 @@
   position: absolute;
   z-index: 1;
   width: 250px;
-  height: 90px;
+  max-height: 90px;
   list-style: none;
   margin-top: 5px;
   padding-left: 0;
   border: 1px solid grey;
   border-radius: 5px;
   background-color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
   cursor: pointer;
 
 }
