@@ -25,10 +25,12 @@
 }
 
 .title {
-    font-family: var(--mainFont);
     margin-top: 80px;
     margin-bottom: 40px;
     font-size: 40px;
+    @media screen and (max-width: 767px) {
+        margin-top: 0;
+    }
 }
 
 .text {
