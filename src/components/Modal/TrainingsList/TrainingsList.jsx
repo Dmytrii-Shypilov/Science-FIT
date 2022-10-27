@@ -6,7 +6,7 @@ import {
   addScheduleItem,
   deleteMultipleScheduleItems,
 } from '../../../redux/schedule/schedule-operations.js';
-import { getTimeArray } from '../../services/calendarHelpers.js';
+import { getTimeArray } from '../../../services/calendarHelpers.js';
 import { NavLink } from 'react-router-dom';
 
 const TrainingList = ({

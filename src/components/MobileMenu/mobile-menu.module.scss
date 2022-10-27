@@ -1,0 +1,42 @@
+
+.modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    padding-top: 30px;
+    background-color: #fff;
+}
+
+.list {
+    list-style: none;
+}
+
+.listItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    color: #545454;
+    font-weight: 600;
+    &:not(:last-of-type) {
+        border-bottom: 1px dashed #545454;
+    }
+}
+
+.link {
+    text-decoration: none;
+    color: #545454;
+}
+
+.active {
+    @extend .link;
+    color: red;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}

@@ -16,7 +16,6 @@ const DescriptionBlock = ({ goBack, clickedTraining }) => {
                 <span className={s.params}>sets: {el.sets}, reps: {el.repetitions},</span>
                 <span className={s.params}>rest: {el.restInterval} secs</span>
                 </div>
-                
               </li>
             );
           })}

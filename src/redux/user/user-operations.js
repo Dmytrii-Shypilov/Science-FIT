@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { requestAPI } from '../../components/services/requestAPI';
+import { requestAPI } from '../../services/requestAPI';
 
 
 export const registerUser = createAsyncThunk(

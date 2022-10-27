@@ -16,9 +16,13 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: {
+    [registerUser.pending]: (store, { payload }) => {
+      store.isLoading = true
+    },
     [registerUser.fulfilled]: (store, { payload }) => {
       store.email = payload.email;
       store.token = payload.token;
+      store.isLoading = false
     },
     [logOutUser.fulfilled]: (store, { payload }) => {
       store.email = null;
@@ -28,10 +32,13 @@ const userSlice = createSlice({
       store.email = payload.email;
       store.token = payload.token;
     },
-
+    [logInUser.pending]: (store, { payload }) => {
+      store.isLoading = true
+  },
     [logInUser.fulfilled]: (store, { payload }) => {
         store.email = payload.email;
         store.token = payload.token;
+        store.isLoading = false
     },
   },
 });

@@ -9,7 +9,7 @@ const AuthorizationPage = () => {
       <Container>
         <div className={s.wrapper}>
           <div className={s.textBlock}>
-            <h1 className={s.title}>ScienceFit</h1>
+            <h1 className={s.title}>Science<span className={s.fit}>Fit</span></h1>
             <p className={s.text}>Get your fitness routine organized</p>
           </div>
           <AuthorizationForm />

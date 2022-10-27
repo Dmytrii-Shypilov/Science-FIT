@@ -2,7 +2,7 @@ import s from './calendar.module.scss';
 import { useEffect, useState } from 'react';
 import { getSchedule } from '../../redux/schedule/schedule-selector';
 import { useSelector } from 'react-redux';
-import { getClassName, filterTrainings, calendarData } from '../services/calendarHelpers';
+import { getClassName, filterTrainings, calendarData } from '../../services/calendarHelpers';
 
 const Calendar = ({ toggleModal, setPeriod }) => {
   const [calendar, setCalendar] = useState({
