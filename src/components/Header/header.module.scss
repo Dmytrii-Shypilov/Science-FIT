@@ -102,7 +102,7 @@
   font-weight: 600;
   font-size: 15px;
   line-height: 1;
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 768px) {
     display: none;
   }
 }
@@ -112,7 +112,7 @@
 }
 
 .menuBtn {
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 768px) {
     display: none;
   }
 }
