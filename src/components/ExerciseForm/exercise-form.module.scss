@@ -6,11 +6,19 @@
   position: relative;
   display: flex;
   justify-content: center;
-  width: 450px;
   height: 450px;
   padding: 30px 0px;
   border: 1px solid grey;
   border-radius: 5px;
+  @media screen and (max-width: 320px) {
+    width: 320px;
+  }
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;  
+  }
+  @media screen and (min-width: 1280px) {
+    width: 450px;
+  }
 }
 
 .title {
@@ -134,12 +142,6 @@
   user-select: none;
 }
 
-// .btn {
-//   display: block;
-//   height: 30px;
-//   border: 1px solid grey;
-//   border-radius: 5px;
-// }
 
 .btn {
   padding: 7px 10px;

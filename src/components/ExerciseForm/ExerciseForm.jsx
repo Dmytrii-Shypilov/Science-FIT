@@ -171,7 +171,8 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
       restInterval: '',
     });
     setList({
-      filteredList: exercises,
+      fullList: exercises,
+      filteredList: exercises, ////// here amnd
     })
   
   };
