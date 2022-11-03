@@ -1,10 +1,14 @@
 .listBlock {
     width: 550px;
     height: 350px;
-    border: 1px solid grey;
-    border-radius: 5px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
     margin: 0 auto;
     padding: 10px;
+    @media screen and (max-width: 767px) {
+        width: 330px;
+        padding: 10px;
+      }
    
 }
 
@@ -22,6 +26,9 @@
     align-items: center;
     padding: 5px 10px;
     margin-bottom: 5px;
+    @media screen and (max-width: 767px) {
+        padding: 0px 5px;
+      }
 
 }
 

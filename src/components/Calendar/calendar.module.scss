@@ -16,6 +16,9 @@
   font-weight: 700;
   width: 170px;
   margin: 0px 10px;
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
 }
 
 .dateBtn {
@@ -35,21 +38,24 @@
 }
 
 .calendarDays {
-  width: 1200px;
   display: flex;
   flex-wrap: wrap;
   padding: 15px;
   background-color: #f9f9f9;
   border-radius: 5px;
+  @media screen and (max-width: 1279px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1200px;
+  }
 }
 
 .day {
   position: relative;
   width: calc((100% - 90px) / 7);
-  height: 150px;
   border: 1px solid gray;
   border-radius: 5px;
-
   margin-bottom: 15px;
   &:hover {
     border-width: 2px;
@@ -57,6 +63,16 @@
   }
   &:not(:nth-of-type(7n + 7)) {
     margin-right: 15px;
+  }
+  @media screen and (max-width: 767px) {
+    height: 50px;
+    padding-top: 25px;
+  }
+  @media screen and (min-width: 768px) {
+    height: 80px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 150px;
   }
 }
 
@@ -106,19 +122,72 @@
   width: 1200px;
   height: 50px;
   padding: 0px 15px;
+  @media screen and (max-width: 1279px) {
+    display: none;
+  }
+ 
 }
 
 .training {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20px;
-  width: 90px;
-  margin-top: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 5px;
   background-color: red;
   color: #fff;
   overflow: hidden;
+  @media screen and (max-width: 767px) {
+    display: inline-flex;
+    width: 5px;
+    height: 5px;
+    margin-right: 2px;
+    margin-bottom: 3px;
+    color: red;
+    border-radius: 50%;
+   
+  }
+  @media screen and (min-width: 1280px) {
+    height: 20px;
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    border-radius: 5px;
+  
+  }
+}
+
+.trainingList {
+  @media screen and (max-width: 767px) {
+    display: flex;
+    width: 21px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+}
+
+.headRowMobile {
+  display: flex;
+  padding: 0 15px;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
+}
+
+.headColumnMobile {
+  display: flex;
+  width: calc((100% - 90px) / 7);
+  height: 30px;
+  color: #000;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  &:not(:nth-of-type(7n)) {
+    margin-right: 15px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
 }

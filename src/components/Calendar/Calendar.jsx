@@ -49,10 +49,13 @@ const Calendar = ({ toggleModal, setPeriod }) => {
             id={`${i - padding}.${month + 1}.${year}`}
           >
             <span className={className.iconClassName}>{i - padding}</span>
+            <div className={s.trainingList}>
             {trainings &&
               trainings.map(el => {
-                return <div className={s.training}>{el.name.split(' ')[0]}</div>;
+                return (<div className={s.training}>{el.name.split(' ')[0]}</div>);
               })}
+            </div>
+          
           </div>
         );
       }
@@ -124,6 +127,15 @@ const Calendar = ({ toggleModal, setPeriod }) => {
         <div className={s.headColumn}>Friday</div>
         <div className={s.headColumn}>Saturday</div>
         <div className={s.headColumn}>Sunday</div>
+      </div>
+      <div className={s.headRowMobile} id="head">
+        <div className={s.headColumnMobile}>Mon</div>
+        <div className={s.headColumnMobile}>Tue</div>
+        <div className={s.headColumnMobile}>Wed</div>
+        <div className={s.headColumnMobile}>Thu</div>
+        <div className={s.headColumnMobile}>Fri</div>
+        <div className={s.headColumnMobile}>Sat</div>
+        <div className={s.headColumnMobile}>Sun</div>
       </div>
       <div className={s.calendarDays}>{renderMarkup()}</div>
     </div>
