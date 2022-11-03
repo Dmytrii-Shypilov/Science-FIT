@@ -34,7 +34,7 @@ body {
 }
 
 .wrapper {
-  min-height: 100vh;
+  min-height: calc(100vh - 125px);
   width: 100%;
 }
 
