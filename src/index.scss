@@ -34,8 +34,13 @@ body {
 }
 
 .wrapper {
-  min-height: calc(100vh - 125px);
   width: 100%;
+  min-height: 100vh;
+  @media screen and (max-width: 767px) {
+    min-height: calc(100vh - 125px);
+  }
+ 
+
 }
 
 ::-webkit-scrollbar {
