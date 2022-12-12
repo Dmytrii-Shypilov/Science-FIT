@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Notify } from 'notiflix';
 
 const instance = axios.create({
-  baseURL: 'science-fit.up.railway.app',
+  baseURL: 'https://science-fit.up.railway.app/',
 });
 
 const fetchExercises = async () => {
