@@ -1,0 +1,51 @@
+//Normalize//
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+p {
+    margin: 0;
+}
+
+h2, h4 {
+    margin: 0;
+}
+
+///////////////
+
+.timer {
+    position: relative;
+    width: 320px;
+    min-height: 500px;
+    border: 1px solid #000;
+    border-radius: 5px;
+
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.btnContainer {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 10px;
+  cursor: pointer;
+  border: transparent;
+  border-radius: 5px;
+  background-color: red;
+  color: #fff;
+  &:hover {
+    background-color: grey;
+  }
+}
+
+
+

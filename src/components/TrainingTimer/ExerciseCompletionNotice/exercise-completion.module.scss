@@ -1,0 +1,43 @@
+.title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.statistics {
+    margin-bottom: 25px;
+}
+
+.heading {
+    margin-bottom: 10px;
+}
+
+.text {
+    margin-right: 10px;
+    &:first-of-type {
+        display: inline-block;
+        font-weight: 600;
+        width: 10px;
+    }
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+}
+
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    padding: 7px 15px;
+    cursor: pointer;
+    border: transparent;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+    &:hover {
+      background-color: grey;
+    }
+  }

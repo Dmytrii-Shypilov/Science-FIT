@@ -1,0 +1,54 @@
+//Normalize//
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+p {
+    margin: 0;
+}
+
+h2, h4 {
+    margin: 0;
+}
+
+///////////////
+
+
+
+.exerciseBlock {
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    &:not(:last-of-type) {
+        margin-bottom: 15px;
+    }
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.status {
+    font-weight: 700;
+    color: gray;
+}
+
+.btn {
+    display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 10px;
+  cursor: pointer;
+  border: transparent;
+  border-radius: 5px;
+  background-color: red;
+  color: #fff;
+  &:hover {
+    background-color: grey;
+  }
+}
+
+
+

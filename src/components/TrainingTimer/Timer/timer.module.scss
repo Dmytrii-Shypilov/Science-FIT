@@ -1,0 +1,42 @@
+
+
+.timer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 280px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  
+}
+
+.clock {
+
+  font-size: 35px;
+  font-weight: 700;
+
+ 
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding: 7px 15px;
+  cursor: pointer;
+  border: transparent;
+  border-radius: 5px;
+  background-color: red;
+  color: #fff;
+  &:hover {
+    background-color: grey;
+  }
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 700;
+}
