@@ -1,32 +1,52 @@
 import s from "./timer.module.scss";
 import { useEffect, useState } from "react";
 
-const Timer = ({ time, countDown, showForm, saveSetData, completeRest }) => {
+const Timer = ({
+  time,
+  countDown,
+  showForm,
+  saveSetData,
+  completeRest,
+}) => {
   const [counter, setCounter] = useState({
     time: 0,
     countDown: false,
     timerId: null,
     curButton: "start",
+    countingInProgress: false
   });
 
   const startCount = () => {
-    const timerId = setInterval(() => {
+    {
+      const timerId = setInterval(() => {
+        setCounter((prevState) => {
+          return {
+            ...prevState,
+            time: countDown ? prevState.time - 1 : prevState.time + 1,
+          };
+        });
+      }, 1000);
       setCounter((prevState) => {
         return {
           ...prevState,
-          time: countDown ? prevState.time - 1 : prevState.time + 1,
+          timerId,
+          countingInProgress:true,
+          curButton: countDown ? "none" : "finish",
         };
       });
-    }, 1000);
-    setCounter((prevState) => {
-      return {
-        ...prevState,
-        timerId,
-        curButton: "finish",
-      };
-    });
+    }
   };
 
+useEffect(()=> {
+if(counter.countDown && !counter.countingInProgress) {
+  setCounter((prevState) => {
+    return {
+      ...prevState,
+      curButton: 'start rest'
+    };
+  });
+}
+}, [counter.countDown, counter.countingInProgress])
 
   useEffect(() => {
     setCounter((prevState) => {
@@ -35,25 +55,12 @@ const Timer = ({ time, countDown, showForm, saveSetData, completeRest }) => {
   }, [time, countDown]);
 
   useEffect(() => {
-    if (counter.countDown === true && counter.time === time) {
-      startCount();
-      setCounter((prevState) => {
-        return {
-          ...prevState,
-          curButton: "none",
-        };
-      });
-    }
-  }, [counter.countDown, counter.time, time]);
-
-  useEffect(() => {
     if (counter.time === 0 && counter.countDown === true) {
       clearInterval(counter.timerId);
       completeRest();
     }
   }, [counter.time, completeRest, counter.countDown, counter.timerId]);
 
-  
   const stopCount = () => {
     clearInterval(counter.timerId);
     setCounter((prevState) => {
@@ -91,9 +98,9 @@ const Timer = ({ time, countDown, showForm, saveSetData, completeRest }) => {
           finish
         </button>
       )}
-      {counter.curButton === "start" && (
+      {["start", "start rest"].includes(counter.curButton) && (
         <button className={s.btn} onClick={startCount}>
-          start
+          {counter.curButton}
         </button>
       )}
       {counter.curButton === "restart" && (

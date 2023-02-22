@@ -55,7 +55,7 @@ const ExerciseForm = ({
 
   useEffect(() => {
     localStorage.setItem("nameChoosen", JSON.stringify({ isNameChoosen }));
-  }, [flags.isNameChoosen]);
+  }, [isNameChoosen]);
 
   const toResetForm = () => {
     setForm({

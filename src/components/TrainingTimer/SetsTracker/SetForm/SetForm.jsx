@@ -29,7 +29,7 @@ const submitData = (e) => {
           <label className={s.label} htmlFor="">Repetitions</label>
           <input ref={reps} className={s.input} type="number" />
         </div>
-        <button onClick={submitData} className={s.btn} type="submit">Take rest</button>
+        <button onClick={submitData} className={s.btn} type="submit">save</button>
       </div>
     </form>
   );

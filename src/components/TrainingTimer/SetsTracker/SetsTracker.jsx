@@ -5,7 +5,12 @@ import SetForm from "./SetForm";
 import RestTracker from "../RestTracker/RestTracker";
 import ExerciseCompletionNotice from "../ExerciseCompletionNotice";
 
-const SetsTracker = ({ currExercise, setCompletedStatus, moveToExercises, saveExerciseData}) => {
+const SetsTracker = ({
+  currExercise,
+  setCompletedStatus,
+  moveToExercises,
+  saveExerciseData,
+}) => {
   const [curSet, setCurrSet] = useState({ order: 1, data: {} });
   const [viewState, setViewState] = useState({
     setTimer: true,
@@ -100,10 +105,10 @@ const SetsTracker = ({ currExercise, setCompletedStatus, moveToExercises, saveEx
   const saveExercise = () => {
     const exData = {
       exercise,
-      sets: data
-    }
-    saveExerciseData(exData)
-  }
+      sets: data,
+    };
+    saveExerciseData(exData);
+  };
 
   return (
     <div>
@@ -124,7 +129,7 @@ const SetsTracker = ({ currExercise, setCompletedStatus, moveToExercises, saveEx
             />
           </div>
         )}
-  
+
         {form && (
           <div className={s.setForm}>
             <SetForm saveSetData={saveSetData} takeRest={takeRest} />
