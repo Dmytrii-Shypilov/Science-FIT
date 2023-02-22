@@ -9,31 +9,6 @@ const Timer = ({ time, countDown, showForm, saveSetData, completeRest }) => {
     curButton: "start",
   });
 
-  useEffect(() => {
-    setCounter((prevState) => {
-      return { ...prevState, time, countDown };
-    });
-  }, []);
-
-  useEffect(() => {
-    if (counter.countDown === true && counter.time === time) {
-      startCount();
-      setCounter((prevState) => {
-        return {
-          ...prevState,
-          curButton: "none",
-        };
-      });
-    }
-  }, [counter.countDown]);
-
-  useEffect(() => {
-    if (counter.time == 0 && counter.countDown === true) {
-      clearInterval(counter.timerId);
-      completeRest();
-    }
-  }, [counter.time]);
-
   const startCount = () => {
     const timerId = setInterval(() => {
       setCounter((prevState) => {
@@ -52,6 +27,33 @@ const Timer = ({ time, countDown, showForm, saveSetData, completeRest }) => {
     });
   };
 
+
+  useEffect(() => {
+    setCounter((prevState) => {
+      return { ...prevState, time, countDown };
+    });
+  }, [time, countDown]);
+
+  useEffect(() => {
+    if (counter.countDown === true && counter.time === time) {
+      startCount();
+      setCounter((prevState) => {
+        return {
+          ...prevState,
+          curButton: "none",
+        };
+      });
+    }
+  }, [counter.countDown, counter.time, time]);
+
+  useEffect(() => {
+    if (counter.time === 0 && counter.countDown === true) {
+      clearInterval(counter.timerId);
+      completeRest();
+    }
+  }, [counter.time, completeRest, counter.countDown, counter.timerId]);
+
+  
   const stopCount = () => {
     clearInterval(counter.timerId);
     setCounter((prevState) => {

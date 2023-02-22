@@ -27,7 +27,7 @@ const TrainingTimer = ({exercises, name}) => {
       }, {});
       setExStatus(statusInfo);
     }
-  }, [exercises])
+  }, [exercises, exStatus])
 
   useEffect(() => {
     const status = Object.values(exStatus);
@@ -62,6 +62,7 @@ const TrainingTimer = ({exercises, name}) => {
 
   const sendFinalData = () => {
     navigate('/calendar')
+    console.log(finalData)
   };
 
   return (

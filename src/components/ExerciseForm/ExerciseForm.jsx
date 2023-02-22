@@ -1,7 +1,6 @@
 import s from "./exercise-form.module.scss";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { getTrainings } from "../../redux/trainings/trainings-selector";
 import { getExercises } from "../../redux/exercises/exercises-selector";
 import { useSelector } from "react-redux";
@@ -56,7 +55,7 @@ const ExerciseForm = ({
 
   useEffect(() => {
     localStorage.setItem("nameChoosen", JSON.stringify({ isNameChoosen }));
-  }, [flags]);
+  }, [flags.isNameChoosen]);
 
   const toResetForm = () => {
     setForm({

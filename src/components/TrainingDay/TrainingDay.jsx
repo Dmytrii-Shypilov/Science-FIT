@@ -25,7 +25,7 @@ const TrainingDay = ({ trainingDay, resetTraining, setDay, resetNotes }) => {
     if (note !== null) {
       localStorage.setItem("trainingDay", JSON.stringify(notes));
     }
-  }, [notes]);
+  }, [notes, note]);
 
   useEffect(() => {
     if (resetNotes) {
