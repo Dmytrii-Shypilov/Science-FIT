@@ -1,14 +1,22 @@
-import s from './exercise-form.module.scss';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { getTrainings } from '../../redux/trainings/trainings-selector';
-import { getExercises } from '../../redux/exercises/exercises-selector';
-import { useSelector } from 'react-redux';
+import s from "./exercise-form.module.scss";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getTrainings } from "../../redux/trainings/trainings-selector";
+import { getExercises } from "../../redux/exercises/exercises-selector";
+import { useSelector } from "react-redux";
 
-const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert }) => {
-  const trainings = useSelector(getTrainings)
-  const exercises = useSelector(getExercises)
-  const { resetForm } = formReset;
+const ExerciseForm = ({
+  addExercise,
+  getName,
+  resetForm,
+  setFormReset,
+  setAlert,
+  resetTraining,
+}) => {
+  const trainings = useSelector(getTrainings);
+  const exercises = useSelector(getExercises);
+
 
   const [list, setList] = useState({
     fullList: [],
@@ -20,32 +28,45 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
     isNameChoosen: false,
   });
 
-  const [dayName, setDayName] = useState('');
+  const [dayName, setDayName] = useState("");
 
   const [form, setForm] = useState({
-    exercise: '',
-    resistance: '',
-    sets: '',
-    repetitions: '',
-    restInterval: '',
+    exercise: "",
+    resistance: "",
+    sets: "",
+    repetitions: "",
+    restInterval: "",
   });
 
   const { exercise, resistance, sets, repetitions, restInterval } = form;
   const { fullList, filteredList } = list;
   const { isMenuOpen, isNameChoosen } = flags;
 
+  useEffect(() => {
+    const cachedName = JSON.parse(localStorage.getItem("nameChoosen"));
+    if (cachedName?.isNameChoosen) {
+      setFlags((prevState) => {
+        return {
+          ...prevState,
+          ...cachedName,
+        };
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("nameChoosen", JSON.stringify({ isNameChoosen }));
+  }, [flags]);
 
   const toResetForm = () => {
     setForm({
-      exercise: '',
-      resistance: '',
-      sets: '',
-      repetitions: '',
-      restInterval: '',
+      exercise: "",
+      resistance: "",
+      sets: "",
+      repetitions: "",
+      restInterval: "",
     });
-    setDayName({
-      name: '',
-    });
+    setDayName("");
     setFlags({
       isMenuOpen: false,
       isNameChoosen: false,
@@ -57,32 +78,32 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
       toResetForm();
       setFormReset({
         resetForm: false,
-      })
+      });
     }
     setList({
       fullList: exercises,
       filteredList: exercises,
-    })
+    });
   }, [resetForm, setFormReset, exercises]);
 
-  const onInput = e => {
-    if (e.target.name === 'day-name') {
+  const onInput = (e) => {
+    if (e.target.name === "day-name") {
       setDayName(e.target.value);
       return;
     }
 
-    setForm(prevState => {
+    setForm((prevState) => {
       return {
         ...prevState,
         [e.target.name]: e.target.value,
       };
     });
 
-    if (e.target.name === 'exercise') {
-      setList(prevState => {
+    if (e.target.name === "exercise") {
+      setList((prevState) => {
         return {
           ...prevState,
-          filteredList: fullList.filter(el =>
+          filteredList: fullList.filter((el) =>
             el.exercise.toLowerCase().includes(e.target.value.toLowerCase())
           ),
         };
@@ -90,11 +111,11 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
     }
   };
 
-  const closeMenu = e => {
-    if (e.target.name === 'exercise') {
+  const closeMenu = (e) => {
+    if (e.target.name === "exercise") {
       return;
     }
-    setFlags(prevState => {
+    setFlags((prevState) => {
       return {
         ...prevState,
         isMenuOpen: false,
@@ -102,8 +123,8 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
     });
   };
 
-  const toggleMenu = e => {
-    setFlags(prevState => {
+  const toggleMenu = (e) => {
+    setFlags((prevState) => {
       return {
         ...prevState,
         isMenuOpen: true,
@@ -111,8 +132,8 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
     });
   };
 
-  const chooseExercise = e => {
-    setForm(prevState => {
+  const chooseExercise = (e) => {
+    setForm((prevState) => {
       return {
         ...prevState,
         exercise: e.target.textContent,
@@ -120,14 +141,14 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
     });
   };
 
-  const buttonsAction = e => {
-    const [type, action] = e.target.id.split(' ')
+  const buttonsAction = (e) => {
+    const [type, action] = e.target.id.split(" ");
     let step = 1;
-    if (type === 'restInterval') {
+    if (type === "restInterval") {
       step = 5;
     }
-    if (action === 'increase') {
-      setForm(prevState => {
+    if (action === "increase") {
+      setForm((prevState) => {
         return {
           ...prevState,
           [type]: Number(form[type]) + step,
@@ -135,7 +156,7 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
       });
     } else {
       if (form[type] - step > 0) {
-        setForm(prevState => {
+        setForm((prevState) => {
           return {
             ...prevState,
             [type]: Number(form[type]) - step,
@@ -145,16 +166,23 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
     }
   };
 
-  const submitExercise = e => {
+  const submitExercise = (e) => {
     e.preventDefault();
-
-    if (!exercise || !resistance || !sets || !repetitions || !restInterval) {
+    if (!exercise || !fullList.find((ex) => ex.exercise === exercise)) {
       setAlert({
         isAlert: true,
-        type: 'alert',
-        message: 'All fields must be filled'
-      })
-      return
+        type: "alert",
+        message: "Choose exercise, please",
+      });
+      return;
+    }
+    if (!resistance || !sets || !repetitions || !restInterval) {
+      setAlert({
+        isAlert: true,
+        type: "alert",
+        message: "All fields must be filled",
+      });
+      return;
     }
     addExercise({
       exercise,
@@ -164,44 +192,55 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
       restInterval,
     });
     setForm({
-      exercise: '',
-      resistance: '',
-      sets: '',
-      repetitions: '',
-      restInterval: '',
+      exercise: "",
+      resistance: "",
+      sets: "",
+      repetitions: "",
+      restInterval: "",
     });
     setList({
       fullList: exercises,
-      filteredList: exercises, ////// here amnd
-    })
-  
+      filteredList: exercises, 
+    });
   };
 
   const setName = () => {
     if (!dayName) {
       setAlert({
         isAlert: true,
-        type: 'alert',
-        message: 'You should name your training in order to continue'
-      })
-      return
+        type: "alert",
+        message: "You should name your training in order to continue",
+      });
+      return;
     }
-    const doesNameExist = Boolean(trainings.find(el=> el.name === dayName))
+    const doesNameExist = Boolean(trainings.find((el) => el.name === dayName));
     if (doesNameExist) {
       setAlert({
         isAlert: true,
-        type: 'alert',
-        message: 'A training with such name already exists'
-      })
-      return
+        type: "alert",
+        message: "A training with such name already exists",
+      });
+      return;
     }
     getName(dayName);
-    setFlags(prevState => {
+    setFlags((prevState) => {
       return {
         ...prevState,
         isNameChoosen: true,
       };
     });
+  };
+
+  const cancelTrainingSetUp = (e) => {
+    e.preventDefault();
+
+    setAlert({
+      isAlert: true,
+      type: "notify",
+      message: "Are you sure to cancel this training?",
+      callback: [() => resetTraining()],
+    });
+
   };
 
   return (
@@ -247,7 +286,7 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
                   {!filteredList.length && (
                     <p className={s.message}>Not Found</p>
                   )}
-                  {filteredList.map(el => {
+                  {filteredList.map((el) => {
                     return (
                       <li
                         onClick={chooseExercise}
@@ -331,7 +370,7 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
                 <div className={s.inputWrap}>
                   <span
                     onClick={buttonsAction}
-                    id="repetitions decrease" 
+                    id="repetitions decrease"
                     className={s.decrease}
                   >
                     -
@@ -388,6 +427,9 @@ const ExerciseForm = ({ addExercise, getName, formReset, setFormReset, setAlert 
             <div className={s.commonBox}>
               <button onClick={submitExercise} className={s.btn} type="submit">
                 Add Exercise
+              </button>
+              <button className={s.btn} onClick={cancelTrainingSetUp}>
+                Cancel
               </button>
             </div>
           </>

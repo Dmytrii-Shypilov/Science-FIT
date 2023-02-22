@@ -1,11 +1,14 @@
 import s from "./training-timer.module.scss";
 
 import { useEffect, useState } from "react";
-import { exercises } from "../../DB/exercises";
+import { useNavigate } from "react-router-dom";
 import Exercises from "./Exercises/Exercises";
 import SetsTracker from "./SetsTracker/SetsTracker";
 
-const TrainingTimer = () => {
+
+const TrainingTimer = ({exercises, name}) => {
+  
+ 
   const [currBlock, setCurrBlock] = useState("exercises");
   const [exStatus, setExStatus] = useState({});
   const [choosen, setChoosen] = useState({});
@@ -15,14 +18,16 @@ const TrainingTimer = () => {
     exercises: [],
   });
 
-  useEffect(() => {
+ const navigate = useNavigate()
+
+  useEffect(()=>{
     if (!Object.keys(exStatus).length) {
       const statusInfo = exercises.reduce((data, el) => {
         return Object.assign(data, { [el.exercise]: "pending" });
       }, {});
       setExStatus(statusInfo);
     }
-  }, []);
+  }, [exercises])
 
   useEffect(() => {
     const status = Object.values(exStatus);
@@ -56,13 +61,14 @@ const TrainingTimer = () => {
   };
 
   const sendFinalData = () => {
-    console.log('sending')
+    navigate('/calendar')
   };
 
   return (
     <div className={s.timer}>
       {currBlock === "exercises" && (
         <Exercises
+          trainingName={name}
           exStatus={exStatus}
           setCurrBlock={setCurrBlock}
           exercises={exercises}
@@ -80,7 +86,9 @@ const TrainingTimer = () => {
       )}
       {trainingCompleted && (
         <div className={s.btnContainer}>
-          <button onClick={sendFinalData} className={s.btn}>Finish training</button>
+          <button onClick={sendFinalData} className={s.btn}>
+            Finish training
+          </button>
         </div>
       )}
     </div>

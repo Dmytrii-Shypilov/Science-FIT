@@ -2,10 +2,10 @@ import s from "./exercises.module.scss";
 
 import ExercisesList from './ExercisesList'
 
-const Exercises = ({exercises, setCurrBlock, setChoosen, exStatus}) => {
+const Exercises = ({exercises, setCurrBlock, setChoosen, exStatus, trainingName}) => {
   return (
     <div>
-      <h2 className={s.title}>My training</h2>
+      <h2 className={s.title}>{trainingName}</h2>
 
       <ExercisesList
         exStatus={exStatus}

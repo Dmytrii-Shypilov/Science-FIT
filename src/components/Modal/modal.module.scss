@@ -115,9 +115,12 @@
   }
 }
 
-.cancelBtn {
+.actionBtn {
   @extend .btn;
   height: 25px;
+  &:last-of-type{
+    margin-left: 5px;
+  }
 
 }
 

@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 
 const modalRoot = document.querySelector('#modalRoot');
 
-export const AlertModal = ({ alert, setAlert, callback }) => {
-  const { type, message } = alert;
+export const AlertModal = ({ alert, setAlert}) => {
+  const { type, message, callback } = alert;
   const dispatch = useDispatch();
 
 
@@ -19,6 +19,11 @@ export const AlertModal = ({ alert, setAlert, callback }) => {
   };
 
   const confirm = () => {
+    if (message === "Are you sure to cancel this training?") {
+      callback[0]()
+      closeModal()
+      return
+    }
     dispatch(callback[0]());
     if (callback[1]) {
       dispatch(callback[1]());

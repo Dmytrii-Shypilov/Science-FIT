@@ -20,7 +20,7 @@ const ExercisesList = ({ exercises, setCurrBlock, setChoosen, exStatus }) => {
                   className={s.btn}
                   onClick={chooseExercise}
                 >
-                  Start Exercise
+                  Start
                 </button>
               ) : (
                 <span className={s.status}>Completed</span>

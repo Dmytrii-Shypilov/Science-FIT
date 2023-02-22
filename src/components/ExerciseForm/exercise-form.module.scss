@@ -153,4 +153,7 @@
   &:hover {
     background-color: grey;
   }
+  &:last-of-type {
+    margin-left: 20px;
+  }
 }

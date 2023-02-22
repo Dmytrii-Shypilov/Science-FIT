@@ -23,8 +23,8 @@ const MyTrainingPage = lazy(() =>
 const CalendarPage = lazy(() =>
   import("../pages/CalendarPage" /* webpackChunkName: "calendar" */)
 );
-const TrainingTimer = lazy(() =>
-  import("../components/TrainingTimer" /* webpackChunkName: "training-timer" */)
+const TimerPage = lazy(() =>
+  import("../pages/TimerPage" /* webpackChunkName: "training-timer" */)
 );
 
 export const App = () => {
@@ -89,7 +89,7 @@ export const App = () => {
               path="/timer/:name"
               element={
                 <PrivateRoute>
-                  <TrainingTimer />
+                  <TimerPage />
                 </PrivateRoute>
               }
             ></Route>

@@ -1,26 +1,54 @@
-import s from './training-day.module.scss';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTraining } from '../../redux/trainings/trainings-operations';
-import image from '../../images/dumbell.png';
+import s from "./training-day.module.scss";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addTraining } from "../../redux/trainings/trainings-operations";
+import image from "../../images/dumbell.png";
 
-const TrainingDay = ({ trainingDay, resetTraining, setDay }) => {
+const TrainingDay = ({ trainingDay, resetTraining, setDay, resetNotes }) => {
   const dispatch = useDispatch();
   const { name, exercises } = trainingDay;
-  const [flags, setFlags] = useState({
+  const [notes, setNotes] = useState({
     isNotesOpen: false,
+    note: null,
   });
-  const [note, setNote] = useState('');
 
-  const { isNotesOpen } = flags;
+  const { isNotesOpen, note } = notes;
 
-  const onInput = e => {
-    setNote(e.target.value);
+  useEffect(() => {
+    const prevState = JSON.parse(localStorage.getItem("trainingDay"));
+    if (prevState) {
+      setNotes(prevState);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (note !== null) {
+      localStorage.setItem("trainingDay", JSON.stringify(notes));
+    }
+  }, [notes]);
+
+  useEffect(() => {
+    if (resetNotes) {
+      setNotes({
+        isNotesOpen: false,
+        note: "",
+      });
+    }
+  }, [resetNotes]);
+
+  const onInput = (e) => {
+    setNotes((prevState) => {
+      return {
+        ...prevState,
+        note: e.target.value,
+      };
+    });
   };
 
   const toggleNotes = () => {
-    setFlags(prevState => {
+    setNotes((prevState) => {
       return {
+        ...prevState,
         isNotesOpen: !isNotesOpen,
       };
     });
@@ -34,16 +62,18 @@ const TrainingDay = ({ trainingDay, resetTraining, setDay }) => {
 
     dispatch(addTraining(training));
     resetTraining();
-    setFlags({
-      isNotesOpen: false,
+    setNotes((prevState) => {
+      return {
+        isNotesOpen: false,
+        note: "",
+      };
     });
-    setNote('');
   };
 
-  const deleteExercise = e => {
+  const deleteExercise = (e) => {
     const newList = [...exercises];
     newList.splice(e.target.id, 1);
-    setDay(prevState => {
+    setDay((prevState) => {
       return {
         ...prevState,
         exercises: newList,
@@ -51,14 +81,14 @@ const TrainingDay = ({ trainingDay, resetTraining, setDay }) => {
     });
   };
 
-  const moveLeft = e => {
+  const moveLeft = (e) => {
     const idx = Number(e.target.id);
     const newList = [...exercises];
     const movedEl = newList[idx];
     if (idx - 1 >= 0) {
       newList[idx] = newList[idx - 1];
       newList[idx - 1] = movedEl;
-      setDay(prevState => {
+      setDay((prevState) => {
         return {
           ...prevState,
           exercises: newList,
@@ -67,15 +97,15 @@ const TrainingDay = ({ trainingDay, resetTraining, setDay }) => {
     }
   };
 
-  const moveRight = e => {
+  const moveRight = (e) => {
     const idx = Number(e.target.id);
     const newList = [...exercises];
     const movedEl = newList[idx];
     if (idx + 1 < newList.length) {
       newList[idx] = newList[idx + 1];
       newList[idx + 1] = movedEl;
-      console.log(newList, 'final');
-      setDay(prevState => {
+
+      setDay((prevState) => {
         return {
           ...prevState,
           exercises: newList,
@@ -101,7 +131,9 @@ const TrainingDay = ({ trainingDay, resetTraining, setDay }) => {
       {name && (
         <div className={s.wrapper}>
           <h3 className={s.title}>{name}</h3>
-          {!exercises.length && <p className={s.callAction}>Add your exercise, please</p>}
+          {!exercises.length && (
+            <p className={s.callAction}>Add your exercise, please</p>
+          )}
           {exercises.length > 0 && (
             <div className={s.trainingBlock}>
               <div>
@@ -128,7 +160,7 @@ const TrainingDay = ({ trainingDay, resetTraining, setDay }) => {
                             {el.repetitions} ;
                           </p>
                           <p className={s.description}>
-                            <span className={s.label}>Rest:</span>{' '}
+                            <span className={s.label}>Rest:</span>{" "}
                             {el.restInterval} secs ;
                           </p>
                         </div>
