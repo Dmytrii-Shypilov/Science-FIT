@@ -17,7 +17,6 @@ const Timer = ({
   });
 
   const startCount = () => {
-    {
       const timerId = setInterval(() => {
         setCounter((prevState) => {
           return {
@@ -34,7 +33,6 @@ const Timer = ({
           curButton: countDown ? "none" : "finish",
         };
       });
-    }
   };
 
 useEffect(()=> {
