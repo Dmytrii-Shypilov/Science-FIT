@@ -16,21 +16,14 @@ const TimerPage = () => {
   const name = useParams().name.split("-").join(" ");
 
   useEffect(() => {
-    console.log(name)
     const data = JSON.parse(localStorage.getItem("trainingData"));
-    if (data) {
+    if (data && data.name === name) {
       setTrainingData({
         name: data.name,
         exercises: data.exercises,
       });
-    } else {
-      const exercises = trainings.find((tr) => tr.name === name).exercises;
-      setTrainingData({
-        exercises,
-        name,
-      });
-    }
-  }, [trainings, name]);
+    } 
+  }, [name]);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("trainingData"));
