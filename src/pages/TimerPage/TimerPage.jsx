@@ -16,7 +16,7 @@ const TimerPage = () => {
   const name = useParams().name.split("-").join(" ");
 
   useEffect(() => {
-    console.log(trainings);
+    console.log(name)
     const data = JSON.parse(localStorage.getItem("trainingData"));
     if (data) {
       setTrainingData({
@@ -45,6 +45,7 @@ const TimerPage = () => {
       );
     }
   }, [trainings, name]);
+
 
   return (
     <section className={s.section}>
