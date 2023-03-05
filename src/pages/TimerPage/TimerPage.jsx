@@ -30,7 +30,6 @@ const TimerPage = () => {
   }, [trainings, name]);
 
   useEffect(() => {
-    console.log(name)
     const data = JSON.parse(localStorage.getItem("trainingData"));
     if (data) {
       setTrainingData({
