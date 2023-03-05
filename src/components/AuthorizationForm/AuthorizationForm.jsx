@@ -30,7 +30,7 @@ export default function AuthorizationForm() {
   // form validation state
   const [error, setError] = useState(errorState);
   const [dirty, setDirty] = useState(dirtyState);
-  const input = useRef(null)
+  // const input = useRef(null)
 
   // useEffect(()=> {
   //   input.current.focus()
