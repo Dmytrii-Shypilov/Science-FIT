@@ -63,7 +63,7 @@ const Calendar = ({ toggleModal, setPeriod }) => {
       }
     }
     return markup;
-  }, [month, schedule]);
+  }, [month, schedule,days, toggleModal, weekdays, year]);
 
   const nextMonth = e => {
     setCalendar(prevState => {
