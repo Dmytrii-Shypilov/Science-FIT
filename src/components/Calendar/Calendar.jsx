@@ -17,20 +17,19 @@ const Calendar = ({ toggleModal, setPeriod }) => {
   const { schedule } = useSelector(getSchedule);
 
   useEffect(() => {
-    console.log("useEffect")
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
     const days = new Date(year, month + 1, 0).getDate();
-    setPeriod(`${month + 1}.${year}`); // 2nd double rerender
-    setCalendar({ //3d double rerender
+    setPeriod(`${month + 1}.${year}`); // 2nd rerender
+    setCalendar({ //3d rerender
       month,
       year,
       days,
     });
   }, [setPeriod]);
 
-  const markup = useMemo(() => {
+  const renderMarkup = () => {
     const today = new Date();
     const firstDay = new Date(year, month, 1);
     const weekday = firstDay.toLocaleDateString('en-us', {
@@ -63,7 +62,7 @@ const Calendar = ({ toggleModal, setPeriod }) => {
       }
     }
     return markup;
-  }, [month, schedule,days, toggleModal, weekdays, year]);
+  }
 
   const nextMonth = e => {
     setCalendar(prevState => {
@@ -86,6 +85,7 @@ const Calendar = ({ toggleModal, setPeriod }) => {
     setPeriod(`${month + 2}.${year}`);
   };
 
+  
   const prevMonth = () => {
     setCalendar(prevState => {
       return {
@@ -107,7 +107,7 @@ const Calendar = ({ toggleModal, setPeriod }) => {
     setPeriod(`${month}.${year}`);
   };
 
-
+  const markup = renderMarkup()
 
   return (
     <div className={s.calendarBody}>
