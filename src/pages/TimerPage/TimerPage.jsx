@@ -16,6 +16,20 @@ const TimerPage = () => {
   const name = useParams().name.split("-").join(" ");
 
   useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("trainingData"));
+    if (!data || data.name !== name) {
+      const exercises = trainings.find((tr) => tr.name === name).exercises;
+      localStorage.setItem(
+        "trainingData",
+        JSON.stringify({
+          name,
+          exercises,
+        })
+      );
+    }
+  }, [trainings, name]);
+
+  useEffect(() => {
     console.log(name)
     const data = JSON.parse(localStorage.getItem("trainingData"));
     if (data) {
@@ -33,19 +47,7 @@ const TimerPage = () => {
     }
   }, [trainings, name]);
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("trainingData"));
-    if (!data || data.name !== name) {
-      const exercises = trainings.find((tr) => tr.name === name).exercises;
-      localStorage.setItem(
-        "trainingData",
-        JSON.stringify({
-          name,
-          exercises,
-        })
-      );
-    }
-  }, [trainings, name]);
+
 
 
   return (
