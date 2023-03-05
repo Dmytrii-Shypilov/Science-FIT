@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import s from './auth-form.module.scss';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -30,6 +30,11 @@ export default function AuthorizationForm() {
   // form validation state
   const [error, setError] = useState(errorState);
   const [dirty, setDirty] = useState(dirtyState);
+  const input = useRef(null)
+
+  // useEffect(()=> {
+  //   input.current.focus()
+  // }, [])
  
 
   const { email, password } = form;
@@ -144,7 +149,7 @@ export default function AuthorizationForm() {
           <p className={s.text}>Login to ScienceFit using e-mail and password:</p>
           <div className={s.inputBlock}>
             <div className={s.inputWrapper}>
-              <input
+              <input 
                 onChange={onInput}
                 onBlur={onBlur}
                 id="email"
