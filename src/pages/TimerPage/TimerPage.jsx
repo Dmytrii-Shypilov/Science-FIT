@@ -12,7 +12,7 @@ const TimerPage = () => {
     exercises: null,
   });
 
-  const trainings = useSelector(getTrainings); // when reloading page it is eppty array at first render
+  const trainings = useSelector(getTrainings); // when reloading the page it is an empty array at first render
   const name = useParams().name.split("-").join(" ");
 
   useEffect(() => {

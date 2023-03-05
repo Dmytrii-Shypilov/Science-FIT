@@ -1,10 +1,11 @@
 import s from './calendar.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getSchedule } from '../../redux/schedule/schedule-selector';
 import { useSelector } from 'react-redux';
 import { getClassName, filterTrainings, calendarData } from '../../services/calendarHelpers';
 
 const Calendar = ({ toggleModal, setPeriod }) => {
+  console.log('Calendar render')
   const [calendar, setCalendar] = useState({
     year: null,
     month: null,
@@ -16,19 +17,20 @@ const Calendar = ({ toggleModal, setPeriod }) => {
   const { schedule } = useSelector(getSchedule);
 
   useEffect(() => {
+    console.log("useEffect")
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
     const days = new Date(year, month + 1, 0).getDate();
-    setPeriod(`${month + 1}.${year}`);
-    setCalendar({
+    setPeriod(`${month + 1}.${year}`); // 2nd double rerender
+    setCalendar({ //3d double rerender
       month,
       year,
       days,
     });
   }, [setPeriod]);
 
-  const renderMarkup = () => {
+  const markup = useMemo(() => {
     const today = new Date();
     const firstDay = new Date(year, month, 1);
     const weekday = firstDay.toLocaleDateString('en-us', {
@@ -61,7 +63,7 @@ const Calendar = ({ toggleModal, setPeriod }) => {
       }
     }
     return markup;
-  };
+  }, [month, schedule]);
 
   const nextMonth = e => {
     setCalendar(prevState => {
@@ -105,6 +107,8 @@ const Calendar = ({ toggleModal, setPeriod }) => {
     setPeriod(`${month}.${year}`);
   };
 
+
+
   return (
     <div className={s.calendarBody}>
       <div className={s.calNav}>
@@ -137,7 +141,7 @@ const Calendar = ({ toggleModal, setPeriod }) => {
         <div className={s.headColumnMobile}>Sat</div>
         <div className={s.headColumnMobile}>Sun</div>
       </div>
-      <div className={s.calendarDays}>{renderMarkup()}</div>
+      <div className={s.calendarDays}>{markup}</div>
     </div>
   );
 };
